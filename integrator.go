@@ -9,14 +9,17 @@ import (
 	"path/filepath"
 )
 
+// Integrator struct wraps an Echo group to handle routes and assets for the admin panel
 type Integrator struct {
 	group *echo.Group
 }
 
+// NewIntegrator creates a new Integrator instance for the given Echo group
 func NewIntegrator(g *echo.Group) *Integrator {
 	return &Integrator{group: g}
 }
 
+// HandleRoute adds a route to the Echo group and uses the admin.HandlerFunc for processing requests
 func (i *Integrator) HandleRoute(method, path string, handler admin.HandlerFunc) {
 	i.group.Add(method, path, func(c echo.Context) error {
 		code, body := handler(c)
@@ -27,6 +30,7 @@ func (i *Integrator) HandleRoute(method, path string, handler admin.HandlerFunc)
 	})
 }
 
+// ServeAssets serves static assets by using the provided admin.TemplateRenderer interface
 func (i *Integrator) ServeAssets(prefix string, renderer admin.TemplateRenderer) {
 	i.group.GET(fmt.Sprintf("/%s/*", prefix), func(c echo.Context) error {
 		fileName := c.Param("*")
@@ -43,21 +47,25 @@ func (i *Integrator) ServeAssets(prefix string, renderer admin.TemplateRenderer)
 	})
 }
 
+// GetQueryParam extracts a query parameter from the context
 func (i *Integrator) GetQueryParam(ctx interface{}, name string) string {
 	ec := ctx.(echo.Context)
 	return ec.QueryParam(name)
 }
 
+// GetPathParam extracts a path parameter from the context
 func (i *Integrator) GetPathParam(ctx interface{}, name string) string {
 	ec := ctx.(echo.Context)
 	return ec.Param(name)
 }
 
+// GetRequestMethod retrieves the HTTP request method from the context
 func (i *Integrator) GetRequestMethod(ctx interface{}) string {
 	ec := ctx.(echo.Context)
 	return ec.Request().Method
 }
 
+// GetFormData retrieves form data from the request context
 func (i *Integrator) GetFormData(ctx interface{}) map[string][]string {
 	ec := ctx.(echo.Context)
 	if err := ec.Request().ParseForm(); err != nil {
