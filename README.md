@@ -19,7 +19,7 @@ go get github.com/go-advanced-admin/echo-integration
 
 ## Documentation
 
-For detailed documentation on how to use the Echo integration, please visit the [official documentation website](https://goadmin.dev/integrations/echo).
+For detailed documentation on how to use the Echo integration, please visit the [official documentation website](https://goadmin.dev/Echo.html).
 
 ## Quick Start
 
@@ -41,7 +41,7 @@ func main() {
 }
 ```
 
-For more detailed examples and configuration options, please refer to the [Echo Integration Guide](https://goadmin.dev/integrations/echo).
+For more detailed examples and configuration options, please refer to the [Echo Integration Guide](https://goadmin.dev/Echo.html).
 
 ## Contributing
 
