@@ -2,7 +2,7 @@
 name: "Stylistic Issue"
 about: Report an inconsistency or improvement related to code style or formatting.
 title: "[STYLE] Brief description of the stylistic issue"
-labels: style
+labels: 'style'
 assignees: ''
 
 ---
